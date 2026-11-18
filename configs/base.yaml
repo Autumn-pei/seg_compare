@@ -1,0 +1,34 @@
+# 基础实验设置
+seed: 42
+image_size: [256, 256]
+num_classes: 1        # 二值分割：皮损前景1，背景0
+in_channels: 3        # dermoscopy RGB 图像
+
+# 训练超参（全部模型统一）
+batch_size: 4
+epochs: 100
+lr: 1.0e-4
+optimizer: "adamw"       # TODO D3：train.py 里兑现
+scheduler: "cosine"      # TODO D3：train.py 里兑现
+loss_type: "bce_dice"    # TODO D3：losses.py 里兑现
+patience: 15             # TODO D5：evaluator.py 早停，验证集 Dice 15 轮不涨就停
+
+# 数据集路径 & 划分文件
+data_root: "./data"
+raw_dir: "./data/raw"
+processed_dir: "./data/processed"
+split_json: "./data/splits/train_val_test.json"   # 5 个模型只认这一份，不各自重新切
+
+# 输出保存路径
+checkpoint_dir: "./checkpoints"
+result_dir: "./results"
+log_dir: "./results/logs"
+curve_dir: "./results/curves"
+pred_dir: "./results/preds"
+figure_dir: "./results/figures"
+
+# 训练开关
+amp: false           # D3 跑通前先关，少一类 dtype 坑；跑通后再开
+save_best: true
+save_last: false
+visual_pred: true    # TODO D6：保存预测可视化图

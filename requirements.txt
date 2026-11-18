@@ -1,0 +1,11 @@
+# 版本先不锁：先跑 nvidia-smi 看 CUDA Version，再去 pytorch.org 选对应 wheel
+# 选定后把 torch / torchvision 改成 ==x.y.z 写回来，再补一次 commit
+torch
+torchvision
+pyyaml
+numpy
+pillow
+opencv-python
+matplotlib
+tqdm
+pandas

@@ -1,0 +1,21 @@
+# 数据集：原始下载 + 可重生的预处理结果，都不入库
+data/raw/
+data/processed/
+*.zip
+*.rar
+
+# 权重与运行日志：大且能重生
+checkpoints/
+runs/
+*.pth
+*.log
+
+# 环境缓存
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+.vscode/
+
+# results/ 下的 logs / curves / preds / figures 是结论证据，不忽略，别人 clone 下来不跑也能复现图与表。
