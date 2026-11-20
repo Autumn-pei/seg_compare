@@ -1,5 +1,5 @@
 """
-D1-3 数据预处理脚本
+D1 数据预处理脚本
 职责：读取 data/raw 下的 ISIC 2017 官方三子集，统一缩放到 image_size，
       存到 data/processed/，并生成固定划分 data/splits/train_val_test.json。
 """
