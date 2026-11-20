@@ -1,11 +1,17 @@
-# 版本先不锁：先跑 nvidia-smi 看 CUDA Version，再去 pytorch.org 选对应 wheel
-# 选定后把 torch / torchvision 改成 ==x.y.z 写回来，再补一次 commit
-torch
-torchvision
-pyyaml
-numpy
-pillow
-opencv-python
-matplotlib
-tqdm
-pandas
+# ===== 环境：conda env `seg`，Python 3.11，RTX 5060 Ti (Blackwell, sm_120) =====
+# torch / torchvision 必须用 cu128 及以上 wheel（Blackwell 原生内核），安装命令：
+#   pip install torch==2.10.0+cu128 torchvision==0.25.0+cu128 --index-url https://download.pytorch.org/whl/cu128
+torch==2.10.0+cu128
+torchvision==0.25.0+cu128
+
+# ===== 其余依赖（PyPI）=====
+numpy==2.4.6
+pillow==13.0.0
+PyYAML==6.0.3
+opencv-python-headless==5.1.0.95
+matplotlib==3.11.2
+tqdm==4.70.1
+pandas==3.1.1
+einops==0.8.2
+timm==1.0.31
+torchinfo==1.8.0
