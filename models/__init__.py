@@ -1,6 +1,6 @@
 """
 模型工厂：训练循环通过 build_model(name, cfg) 按名字取模型。
-新增模型时：在 _MODELS 字典里登记一行即可，训练代码不用改。
+新增模型时：在 _MODELS 字典里登记。
 """
 
 import torch.nn as nn
@@ -10,7 +10,7 @@ from models.unetplusplus import UNetPlusPlus
 from models.attention_unet import AttentionUNet
 from models.deeplabv3plus import DeepLabV3Plus
 
-# 模型名 -> 模型类。后续 nnUNet 在这里登记。
+# 模型名 -> 模型类
 _MODELS = {
     "unet": UNet,
     "unetpp": UNetPlusPlus,
