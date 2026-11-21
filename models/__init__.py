@@ -7,11 +7,13 @@ import torch.nn as nn
 
 from models.unet import UNet
 from models.unetplusplus import UNetPlusPlus
+from models.attention_unet import AttentionUNet
 
-# 模型名 -> 模型类。后续 UNet++ / Attention UNet / DeepLabV3+ / nnUNet 在这里登记。
+# 模型名 -> 模型类。后续 DeepLabV3+ / nnUNet 在这里登记。
 _MODELS = {
     "unet": UNet,
-    "unetpp":UNetPlusPlus
+    "unetpp": UNetPlusPlus,
+    "attention_unet": AttentionUNet,
 }
 
 
