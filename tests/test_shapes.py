@@ -17,7 +17,7 @@ CFG = {"in_channels": 3, "num_classes": 1}
 INPUT_SHAPE = (1, 3, 256, 256)
 TARGET_SHAPE = (1, 1, 256, 256)
 
-MODELS = ["unet"]
+MODELS = ["unet","unetpp"]
 
 
 def check_shape(name: str) -> None:
