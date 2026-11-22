@@ -8,16 +8,16 @@ in_channels: 3        # dermoscopy RGB 图像
 batch_size: 4
 epochs: 100
 lr: 1.0e-4
-optimizer: "adamw"       # TODO D3：train.py 里兑现
-scheduler: "cosine"      # TODO D3：train.py 里兑现
-loss_type: "bce_dice"    # TODO D3：losses.py 里兑现
-patience: 15             # TODO D5：evaluator.py 早停，验证集 Dice 15 轮不涨就停
+optimizer: "adamw"
+scheduler: "cosine"
+loss_type: "bce_dice"
+patience: 15             # 验证集 Dice 连续 15 轮不涨则早停
 
 # 数据集路径 & 划分文件
 data_root: "./data"
 raw_dir: "./data/raw"
 processed_dir: "./data/processed"
-split_json: "./data/splits/train_val_test.json"   # 5 个模型只认这一份，不各自重新切
+split_json: "./data/splits/train_val_test.json"   # 各模型只认这一份划分，不各自重新切
 
 # 输出保存路径
 checkpoint_dir: "./checkpoints"
@@ -31,4 +31,4 @@ figure_dir: "./results/figures"
 amp: false           # D3 跑通前先关，少一类 dtype 坑；跑通后再开
 save_best: true
 save_last: false
-visual_pred: true    # TODO D6：保存预测可视化图
+visual_pred: true    # 评估时保存预测叠加图

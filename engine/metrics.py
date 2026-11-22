@@ -32,7 +32,6 @@ def iou_coeff(pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
 
 def pixel_accuracy(pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
     """PA = 预测正确的像素数 / 总像素数。"""
-    # TODO(你填)：逐像素比较 pred 与 target，统计相等比例
     pred = pred.flatten(1)
     target = target.flatten(1).float()
 
