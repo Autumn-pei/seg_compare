@@ -1,2 +1,1 @@
-# UNet 专属配置：只写与 base.yaml 不同的项；无专属项时仅声明模型名。
 model: unet

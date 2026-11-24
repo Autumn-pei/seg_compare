@@ -2,7 +2,6 @@
 
 6 个分割模型（4 个 CNN：UNet / UNet++ / Attention UNet / DeepLabV3+；2 个 Transformer：TransUNet / SegFormer）在 ISIC 2017 Task 1 上，用**同一套数据、同一个训练循环**做横向对比。
 
-> 项目目标是吃透架构差异，不对标论文精度；所有图统一 resize 到 256×256。
 
 ## 复现三步
 
@@ -24,7 +23,7 @@
 | TransUNet | 9.01 | 0.8554 | 0.8235 | 0.7323 | 0.9231 |
 | UNet | 31.04 | 0.8397 | 0.8168 | 0.7259 | 0.9212 |
 
-> 局限：单 seed、从头训练、256 分辨率、早停；模型间差距 1~3 个点属同量级，不对标论文精度。
+> 局限：单 seed、从头训练、256 分辨率、早停。
 
 ## 封面图
 
@@ -85,8 +84,7 @@ seg-compare/
 │   └── make_table.py        # 自动生成 README 的结果汇总表格
 ├── notes/
 │   ├── project_flow.md       # 全流程复盘（项目顺序）
-│   ├── results_report.md    # 六模型横向对比结论报告
-│   └── transformer_models.md# Transformer 接入指南
+│   └── results_report.md    # 六模型横向对比结论报告
 ├── tests/
 │   └── test_shapes.py       # 单元测试：校验模型输入输出维度
 └── .github/workflows/ci.yml # CI 自动运行维度测试

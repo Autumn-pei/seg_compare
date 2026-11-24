@@ -28,7 +28,7 @@ def fmt(x) -> str:
 
 
 def count_params(name: str) -> float:
-    """构建模型并统计参数量（单位 M）。"""
+    """构建模型并统计参数量（单位 M)。"""
     model = build_model(name, {"in_channels": cfg["in_channels"], "num_classes": cfg["num_classes"]})
     return sum(p.numel() for p in model.parameters()) / 1e6
 

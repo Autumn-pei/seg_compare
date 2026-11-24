@@ -1,6 +1,6 @@
 """
-D3 共用积木：ConvBNReLU / Down / Up。
-后面 UNet、UNet++、Attention UNet 都复用这里的基础块。
+D3 共用积木块:ConvBNReLU / Down / Up。
+UNet、UNet++、Attention UNet 复用
 """
 
 import torch
@@ -9,8 +9,8 @@ import torch.nn as nn
 
 class ConvBNReLU(nn.Module):
     """
-    一个基础卷积块：Conv2d -> BatchNorm2d -> ReLU。
-    常用 3x3 卷积，padding=1 保持尺寸不变。
+    一个基础卷积块:Conv2d -> BatchNorm2d -> ReLU。
+    常用 3x3 卷积,padding=1 保持尺寸不变。
     """
 
     def __init__(self, in_ch: int, out_ch: int, kernel_size: int = 3,
@@ -30,7 +30,7 @@ class ConvBNReLU(nn.Module):
 
 
 class Down(nn.Module):
-    """下采样：2x2 最大池化，尺寸减半，通道数不变。"""
+    """下采样:2x2 最大池化，尺寸减半，通道数不变。"""
 
     def __init__(self):
         super().__init__()
@@ -45,7 +45,6 @@ class Down(nn.Module):
 class Up(nn.Module):
     """
     上采样：转置卷积把尺寸放大一倍，通道减半。
-    注意：拼接在 unet.py 里做，本块只负责上采样。
     """
 
     def __init__(self, in_ch: int, out_ch: int):
@@ -64,12 +63,12 @@ if __name__ == "__main__":
 
     block = ConvBNReLU(3, 64)
     y1 = block(test_x)
-    print("ConvBNReLU输出形状：", y1.shape) # [2,64,256,256]，高宽不变
+    print("ConvBNReLU输出形状:", y1.shape) # [2,64,256,256]，高宽不变
 
     pool = Down()
     y2 = pool(y1)
-    print("Down池化后形状：", y2.shape) # [2,64,128,128]，宽高减半
+    print("Down池化后形状:", y2.shape) # [2,64,128,128]，宽高减半
 
     up_layer = Up(64, 32)
     y3 = up_layer(y2)
-    print("Up上采样后形状：", y3.shape) # [2,32,256,256]，宽高放大回去
+    print("Up上采样后形状:", y3.shape) # [2,32,256,256]，宽高放大回去

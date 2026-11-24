@@ -1,2 +1,1 @@
-# TransUNet 专属配置：无特殊超参时仅声明模型名，其余继承 base.yaml。
 model: transunet

@@ -28,7 +28,7 @@ pred_dir: "./results/preds"
 figure_dir: "./results/figures"
 
 # 训练开关
-amp: false           # D3 跑通前先关，少一类 dtype 坑；跑通后再开
+amp: false 
 save_best: true
 save_last: false
 visual_pred: true    # 评估时保存预测叠加图

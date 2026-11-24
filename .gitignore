@@ -18,4 +18,4 @@ __pycache__/
 venv/
 .vscode/
 
-# results/ 下的 logs / curves / preds / figures 是结论证据，不忽略，别人 clone 下来不跑也能复现图与表。
+# results/ 下的 logs / curves / preds / figures 是结论证据，不忽略
