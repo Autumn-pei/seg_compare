@@ -32,4 +32,4 @@ def check_shape(name: str) -> None:
 if __name__ == "__main__":
     for name in MODELS:
         check_shape(name)
-    print("全部维度测试通过 ✅")
+    print("全部维度测试通过")

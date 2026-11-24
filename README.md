@@ -1,6 +1,6 @@
 # seg-compare
 
-4 个经典 CNN（UNet / UNet++ / Attention UNet / DeepLabV3+）在 ISIC 2017 Task 1 上，用**同一套数据、同一个训练循环**做横向对比；后续将加入 TransUNet、SegFormer 做 CNN 与 Transformer 的对照。
+6 个分割模型（4 个 CNN：UNet / UNet++ / Attention UNet / DeepLabV3+；2 个 Transformer：TransUNet / SegFormer）在 ISIC 2017 Task 1 上，用**同一套数据、同一个训练循环**做横向对比。
 
 > 项目目标是吃透架构差异，不对标论文精度；所有图统一 resize 到 256×256。
 
@@ -19,21 +19,23 @@
 |---|---|---|---|---|---|
 | DeepLabV3+ | 10.12 | 0.8473 | 0.8451 | 0.7590 | 0.9330 |
 | UNet++ | 34.92 | 0.8397 | 0.8290 | 0.7389 | 0.9221 |
+| SegFormer | 6.36 | 0.8290 | 0.8276 | 0.7406 | 0.9224 |
 | Attention UNet | 31.40 | 0.8481 | 0.8274 | 0.7390 | 0.9252 |
+| TransUNet | 9.01 | 0.8554 | 0.8235 | 0.7323 | 0.9231 |
 | UNet | 31.04 | 0.8397 | 0.8168 | 0.7259 | 0.9212 |
 
 > 局限：单 seed、从头训练、256 分辨率、早停；模型间差距 1~3 个点属同量级，不对标论文精度。
 
 ## 封面图
 
-![四个模型训练曲线](results/curves/metrics_curves.png)
+![六个模型训练曲线](results/curves/metrics_curves.png)
 
 各模型测试集预测叠加图见 `results/preds/<模型>/overlay.png`。
 
 ## 目录速览
 
 configs/  全局 base.yaml + 每个模型一份专属超参
-models/   4 个网络 + build_model 工厂
+models/   6 个网络 + build_model 工厂
 engine/   训练循环 / 损失 / 指标 / 统一评估
 results/  logs / curves / preds / figures（入库，是结论证据）
 scripts/  从 logs 一键出图、出表
@@ -50,7 +52,9 @@ seg-compare/
 │   ├── unet.yaml
 │   ├── unetpp.yaml
 │   ├── attention_unet.yaml
-│   └── deeplabv3plus.yaml
+│   ├── deeplabv3plus.yaml
+│   ├── transunet.yaml
+│   └── segformer.yaml
 ├── data/
 │   ├── raw/                 # ISIC2017 原始压缩解压数据，不上传 git
 │   ├── processed/           # 统一 resize 到 256×256 的图像，不上传 git
@@ -62,6 +66,9 @@ seg-compare/
 │   ├── unetplusplus.py
 │   ├── attention_unet.py
 │   ├── deeplabv3plus.py
+│   ├── trans_blocks.py      # Transformer 共享积木（PatchEmbed / Attention / Block）
+│   ├── transunet.py
+│   ├── segformer.py
 │   └── __init__.py          # build_model 模型工厂
 ├── engine/
 │   ├── train.py             # 统一训练循环，所有模型共用
@@ -77,7 +84,9 @@ seg-compare/
 │   ├── make_figures.py      # 从日志自动绘制曲线、对比图
 │   └── make_table.py        # 自动生成 README 的结果汇总表格
 ├── notes/
-│   └── project_flow.md      # 全流程复盘（项目顺序）
+│   ├── project_flow.md       # 全流程复盘（项目顺序）
+│   ├── results_report.md    # 六模型横向对比结论报告
+│   └── transformer_models.md# Transformer 接入指南
 ├── tests/
 │   └── test_shapes.py       # 单元测试：校验模型输入输出维度
 └── .github/workflows/ci.yml # CI 自动运行维度测试

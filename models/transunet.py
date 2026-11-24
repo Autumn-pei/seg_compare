@@ -36,7 +36,10 @@ class TransUNet(nn.Module):
             d_model=dim, nhead=num_heads, dim_feedforward=dim * 2,
             batch_first=True, norm_first=True, dropout=0.1,
         )
-        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=depth)
+        # enable_nested_tensor=False：norm_first=True 时不启用嵌套张量，避免相关 UserWarning
+        self.encoder = nn.TransformerEncoder(
+            encoder_layer, num_layers=depth, enable_nested_tensor=False
+        )
 
         #解码器：上采样 + 跳跃连接拼接
         self.up1 = Up(dim, 256)
